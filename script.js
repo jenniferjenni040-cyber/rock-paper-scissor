@@ -1,3 +1,5 @@
+alert("Game starting...");
+
 function getComputerChoice() {
   let r = Math.random();
   if (r < 0.33) return "rock";
@@ -6,33 +8,36 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-  return prompt("Enter rock, paper, or scissors:");
+  let choice = prompt("Enter rock, paper, or scissors:");
+  return choice;
 }
 
 function playRound(humanChoice, computerChoice) {
-  humanChoice = humanChoice.toLowerCase();
-
-  if (humanChoice === computerChoice) {
-    alert("It's a tie!");
+  if (!humanChoice) {
+    alert("No input given!");
     return;
   }
 
-  if (
+  humanChoice = humanChoice.toLowerCase();
+
+  if (humanChoice === computerChoice) {
+    alert("Tie!");
+  } else if (
     (humanChoice === "rock" && computerChoice === "scissors") ||
     (humanChoice === "paper" && computerChoice === "rock") ||
     (humanChoice === "scissors" && computerChoice === "paper")
   ) {
-    alert(`You win! ${humanChoice} beats ${computerChoice}`);
+    alert("You win! " + humanChoice + " beats " + computerChoice);
   } else {
-    alert(`You lose! ${computerChoice} beats ${humanChoice}`);
+    alert("You lose! " + computerChoice + " beats " + humanChoice);
   }
 }
 
 function playGame() {
   for (let i = 0; i < 5; i++) {
-    let humanSelection = getHumanChoice();
-    let computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
+    let human = getHumanChoice();
+    let computer = getComputerChoice();
+    playRound(human, computer);
   }
 }
 
